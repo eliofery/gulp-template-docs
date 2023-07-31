@@ -28,7 +28,11 @@
 }
 
 .main-header__logo {
+  display: block;
+  min-height: 44px;
   margin-bottom: 30px;
+
+  line-height: 0;
 }
 
 .main-logo__img {
