@@ -1,8 +1,24 @@
 extends ../layouts/default.pug
 
 block variables
-  - var pageTitle = "Главная";
-  - var pageDesc = "";
-  // - var ogType = "website|article";
+  - var pageTitle = "Документация";
+  - var pageDesc = "Описание по разворачиванию сборки проекта и дальнейшей его поддержки.";
+
+block intro
+  h1 #{ pageTitle }
+  p #{ pageDesc }
+
+block append toc
+  :markdown-it
+    - [Раздел](#part)
+      - [Подраздел](#sub-info)
 
 block content
+  +h2("Раздел", "part")
+  :markdown-it
+    Пример [**ссылки**](/index.html) на раздел.
+
+  +h3("Подраздел", "sub-info")
+  :markdown-it
+    Пример подраздела.
+    

@@ -1,0 +1,22 @@
+.main-logo {
+  display: block;
+}
+
+.main-logo__img {
+  width: 101px;
+  height: 44px;
+
+  transition: transform 0.3s ease-in;
+}
+
+.main-logo:hover .main-logo__img,
+.main-logo:focus .main-logo__img {
+  transform: scale(1.1) rotate(-2deg);
+}
+
+@media screen and (max-width: 768px) {
+  .main-logo:hover .main-logo__img,
+  .main-logo:focus .main-logo__img {
+    transform: none;
+  }
+}

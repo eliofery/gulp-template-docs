@@ -1,42 +1,32 @@
 // @link https://rolle.design/native-css-variables-vs-scss-variables
 $black: #222;
 $white: #fff;
-$accent: #cbcbcb;
+$blue: #f2f6fb;
+$blue-link: #0d6efd;
+$grey: #dee2e6;
+$grey-toc: #444;
+$grey-dark: #fbfbfb;
 
 :root {
-  --theme-text: #{hextorgb($black)};
-  --theme-bg: #{hextorgb($white)};
-
-  --theme-color-accent: #{hextorgb($accent)};
-}
-
-@mixin dark-mode {
-  --theme-text: #{hextorgb($white)};
-  --theme-bg: #{hextorgb($black)};
-
-  --theme-color-accent: #{hextorgb($accent)};
-}
-
-.dark-mode {
-  @include dark-mode;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    @include dark-mode;
-  }
+  --theme-color-black: #{hextorgb($black)};
+  --theme-color-white: #{hextorgb($white)};
+  --theme-color-blue: #{hextorgb($blue)};
+  --theme-color-blue-link: #{hextorgb($blue-link)};
+  --theme-color-grey: #{hextorgb($grey)};
+  --theme-color-grey-toc: #{hextorgb($grey-toc)};
+  --theme-color-grey-dark: #{hextorgb($grey-dark)};
 }
 
 $font-primary: Roboto, -apple-system, Arial, sans-serif;
 
 $fz: 16px;
-$lh: 1.5;
+$lh: 1.2;
 $font-sizes: (
   xxs: 12px,
-  xs: 14px,
-  sm: $fz,
-  md: 18px,
-  lg: 24px,
+  xs: $fz,
+  sm: 20px,
+  md: 24px,
+  lg: 28px,
   xl: 33px,
   xxl: 48px
 );
@@ -50,7 +40,7 @@ $headlines: (
 );
 
 $min-screen: 320px;
-$container-sizes: (mobile: 768px, tablet: 1024px, desktop: 1536px);
-$container-grid: 20px;
+$container-sizes: (mobile: 768px, tablet: 1400px, desktop: 1740px);
+$container-grid: 40px;
 
 $transition: all 0.3s ease;

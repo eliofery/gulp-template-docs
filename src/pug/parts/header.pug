@@ -1,1 +1,22 @@
 header.main-header
+  nav.main-header__nav.main-nav
+    a.main-header__logo.main-logo(href="/docs")
+      img.main-logo__img(src="/img/logo.svg", width="101", height="44", alt="Логотип Docs", loading="lazy")
+
+    ul.main-nav__list
+      each item in jsonData.mainNav.items
+        li.main-nav__item.main-nav__item--close
+          strong.main-nav__title
+            +icon(item.icon).main-nav__icon(width="20", height="20", aria-hidden="true")
+            | #{ item.title }
+
+            button.main-nav__toggle(aria-expanded="false")
+              +icon("icon-arrow-bottom")(width="12", height="12", aria-hidden="true")
+              span.sr-only Подменю раздела
+                strong #{ item.title }
+
+          if item.links
+            ul.main-nav__sub-nav
+              each link in item.links
+                li.main-nav__sub-item
+                  a.main-nav__link(href=link.link) #{ link.name }

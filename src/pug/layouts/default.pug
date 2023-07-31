@@ -20,8 +20,8 @@ html.no-js(lang="ru")
         img(src="https://mc.yandex.ru/watch/#{yandex}", style="position:absolute; left:-9999px;", alt="") 
 
     div(hidden)
-      include ../../assets/images/sprite-mono.svg
-      include ../../assets/images/sprite-multi.svg
+      include ../../assets/icons/sprite-mono.svg
+      include ../../assets/icons/sprite-multi.svg
 
     <!--[if IE]>
     p.browser-upgrade.
@@ -34,14 +34,21 @@ html.no-js(lang="ru")
         #[b Javascript] отключен, некоторые функции сайта недоступны.<br>
         Пожалуйста #[a(rel="nofollow", href="https://support.google.com/adsense/answer/12654", target="_blank") включите javascript]!<br>
 
-    block header
-      include ../parts/header.pug
+    .container
+      block header
+        include ../parts/header.pug
 
-    main
-      block content
+      main.main-content
+        .main-content__intro
+          block intro
 
-    block footer
-      include ../parts/footer.pug
+        .main-content__toc
+          .main-content__toc-wrapp
+            block toc
+              strong Оглавление страницы:
+
+        .main-content__content
+          block content
 
     block scripts
       script(src="/js/main.js?v=" + siteVersion, type="module")

@@ -1,20 +1,24 @@
 @use "sass:map";
 
 .container {
-  width: 100%;
+  display: grid;
+  grid-template-areas: "header main";
+  grid-template-columns: 260px 1fr;
   max-width: map.get($container-sizes, desktop);
+  height: 100%;
   margin: 0 auto;
   padding: 0 $container-grid;
 }
 
-@include from(mobile) {
+@include to(tablet) {
   .container {
-    padding: 0 $container-grid * 2;
+    grid-template-columns: auto minmax(0, 1fr);
+    padding: 0 $container-grid - 10;
   }
 }
 
-@include from(desktop) {
+@include to(mobile) {
   .container {
-    padding: 0 $container-grid * 3;
+    display: block;
   }
 }

@@ -10,3 +10,5 @@
 // 800 – Extra Bold (Ultra Bold)
 
 @include font-face("Roboto", "../fonts/roboto/roboto-regular");
+@include font-face("Roboto", "../fonts/roboto/roboto-light", 300);
+@include font-face("Roboto", "../fonts/roboto/roboto-medium", 500);
