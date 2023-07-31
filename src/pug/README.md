@@ -19,7 +19,7 @@ p Следует #[a(href="https://browsehappy.com/") обновить брау�
 ## Атрибуты
 
 ```pug
-a#id.class(href="//site") Заголовок ссылки
+a#id.class(href="/site") Заголовок ссылки
 
 img(src="", width="", height="", alt="")
 
