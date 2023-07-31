@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Документация — Описание по разворачиванию сборки проекта и дальнейшей его поддержки.</title>
+    <meta name="description" content="Описание по разворачиванию сборки проекта и дальнейшей его поддержки.">
+    <script>
+      document.documentElement.classList.remove('no-js')
+      
+    </script>
+    <style>:root{--theme-color-black:34,34,34;--theme-color-white:255,255,255;--theme-color-blue:242,246,251;--theme-color-blue-link:13,110,253;--theme-color-grey:222,226,230;--theme-color-grey-toc:68,68,68;--theme-color-grey-dark:251,251,251}html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:block}h1{font-size:2em;margin:.67em 0}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace,monospace;font-size:1em}a{background-color:transparent}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace,monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:.35em .75em .625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{vertical-align:baseline}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details{display:block}summary{display:list-item}template{display:none}[hidden]{display:none}*,::after,::before{box-sizing:inherit}body,html{height:100vh}html{box-sizing:border-box}body{position:relative;min-width:320px;margin:0;color:rgb(var(--theme-color-black));font-size:16px;font-family:Roboto,-apple-system,Arial,sans-serif;line-height:1.2;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;background-color:rgb(var(--theme-color-white))}img{max-width:100%;height:auto}button{font-family:inherit;vertical-align:middle;cursor:pointer}h1{margin:57.6px 0 28.8px;font-weight:500;font-size:48px}h2{margin:39.6px 0 19.8px;font-weight:500;font-size:33px}h3{margin:33.6px 0 16.8px;font-weight:500;font-size:28px}h4{margin:28.8px 0 14.4px;font-weight:500;font-size:24px}h5{margin:24px 0 12px;font-weight:500;font-size:20px}h6{margin:19.2px 0 9.6px;font-weight:500;font-size:16px}b,strong{font-weight:500}.sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;border:0;clip:rect(0,0,0,0);clip-path:inset(100%)}.container{display:grid;grid-template-areas:"header main";grid-template-columns:260px 1fr;max-width:1740px;height:100%;margin:0 auto;padding:0 40px}@media screen and (max-width:1400px){.container{grid-template-columns:auto minmax(0,1fr);padding:0 30px}}@media screen and (max-width:768px){.container{display:block}}.main-nav__list{margin:0;padding:0;list-style:none}.main-nav__title{display:grid;grid-column-gap:10px;grid-template-columns:auto 1fr auto;margin-bottom:5px;font-weight:500;cursor:pointer}.main-nav__item--close .main-nav__title{margin-bottom:10px}.no-js .main-nav__title{cursor:auto}.main-nav__toggle{padding:5px;line-height:0;background-color:transparent;border:none}.no-js .main-nav__toggle{display:none}.main-nav__toggle svg{transition:fill .3s ease;fill:#b4b4b4}.main-nav__toggle:focus svg,.main-nav__toggle:hover svg{fill:#818181}.main-nav__item--close .main-nav__toggle svg{transform:rotate(-90deg)}.main-nav__sub-nav{margin:0;padding:0;list-style:none}.main-nav__item--close .main-nav__sub-nav{display:none}.no-js .main-nav__sub-nav{display:block}.main-nav__sub-item{margin-bottom:10px;padding-left:31px;font-size:14px}.main-nav__sub-item:last-child{margin-bottom:20px}.main-nav__link{color:rgb(var(--theme-text));text-decoration:none}.main-nav__link:focus,.main-nav__link:hover{text-decoration:underline}.main-header{position:relative;grid-area:header;height:100%;padding:30px 30px 40px 0;background-color:rgb(var(--theme-color-blue))}.main-header::before{position:absolute;top:0;right:0;bottom:0;z-index:-1;width:100vw;background-color:rgb(var(--theme-color-blue));content:""}.main-header__nav{position:sticky;top:30px}.main-header__logo{display:block;min-height:44px;margin-bottom:30px;line-height:0}@media screen and (max-width:768px){.main-header{position:fixed;left:0;z-index:2;padding:0 30px 0;overflow-y:scroll;transform:translateX(-95%);transition:transform .3s ease}.main-header--show{transform:translateX(0)}.main-header__nav{position:static;padding-top:30px;padding-bottom:30px}}.main-content{display:grid;grid-area:main;grid-column-gap:80px;grid-template-areas:"intro toc" "content toc";grid-template-rows:auto 1fr;grid-template-columns:minmax(0,3fr) minmax(220px,1fr);padding:30px 0 40px 80px;background-color:rgb(var(--theme-color-white))}.main-content--full{grid-template-areas:"intro" "content";grid-template-rows:auto;grid-template-columns:minmax(0,1fr)}.main-content__intro{grid-area:intro;margin-bottom:50px}.main-content__intro h1{margin:0 0 10px}.main-content__intro p{margin:0;font-weight:300;font-size:24px}.main-content__toc{position:sticky;top:30px;grid-area:toc;height:calc(100vh - 70px)}.main-content__toc-wrapp{max-height:100%;padding:20px;overflow-y:auto;background-color:rgb(var(--theme-color-grey-dark));border:1px solid rgb(var(--theme-color-grey));border-radius:5px}.main-content__toc strong{position:relative;display:block;margin-bottom:8px;padding-bottom:8px;color:rgb(var(--theme-color-grey-toc));font-weight:500}.main-content__toc strong::before{position:absolute;bottom:0;width:100%;height:1px;background-color:rgb(var(--theme-color-grey));content:""}.main-content__toc ol,.main-content__toc ul{margin:0;padding:0;list-style:none;counter-reset:outline}.main-content__toc li{margin-top:5px;line-height:1.5;counter-increment:outline}.main-content__toc li::before{color:rgb(var(--theme-color-grey) -toc);content:counters(outline, ".") ". "}.main-content__toc li li:first-child{margin-top:0}.main-content__toc ol ol,.main-content__toc ul ul{padding-left:15px}.main-content__toc ol ol ol,.main-content__toc ul ul ul{display:none}.main-content__toc a{color:rgb(var(--theme-color-grey-toc));text-decoration:none}.main-content__toc a:focus,.main-content__toc a:hover{text-decoration:underline}.main-content__toc a+ol,.main-content__toc a+ul{margin-top:5px}.main-content__content{grid-area:content;box-sizing:border-box}.main-content__content :first-child{margin-top:0}.main-content__content :last-child{margin-bottom:0}.main-content__content ol,.main-content__content ul{padding-left:20px}.main-content__content ol li:first-child,.main-content__content ul li:first-child{margin-top:10px}.main-content__content ol li:last-child,.main-content__content ul li:last-child{margin-bottom:20px}.main-content__content li{margin:10px 0}.main-content__content a,.main-content__intro a{display:inline-block;color:rgb(var(--theme-color-blue-link))}.main-content__content a:focus,.main-content__content a:hover,.main-content__intro a:focus,.main-content__intro a:hover{text-decoration:none}.main-content__content h1 a{opacity:0;transition:opacity .3s ease}.main-content__content h1 a::before{content:"#"}.main-content__content h1 a:focus,.main-content__content h1 a:hover,.main-content__content h1:hover a{opacity:1}.main-content__content h2 a{opacity:0;transition:opacity .3s ease}.main-content__content h2 a::before{content:"#"}.main-content__content h2 a:focus,.main-content__content h2 a:hover,.main-content__content h2:hover a{opacity:1}.main-content__content h3 a{opacity:0;transition:opacity .3s ease}.main-content__content h3 a::before{content:"#"}.main-content__content h3 a:focus,.main-content__content h3 a:hover,.main-content__content h3:hover a{opacity:1}.main-content__content h4 a{opacity:0;transition:opacity .3s ease}.main-content__content h4 a::before{content:"#"}.main-content__content h4 a:focus,.main-content__content h4 a:hover,.main-content__content h4:hover a{opacity:1}.main-content__content h5 a{opacity:0;transition:opacity .3s ease}.main-content__content h5 a::before{content:"#"}.main-content__content h5 a:focus,.main-content__content h5 a:hover,.main-content__content h5:hover a{opacity:1}.main-content__content h6 a{opacity:0;transition:opacity .3s ease}.main-content__content h6 a::before{content:"#"}.main-content__content h6 a:focus,.main-content__content h6 a:hover,.main-content__content h6:hover a{opacity:1}.main-content__example{display:flex;flex-wrap:wrap;justify-content:center;padding:50px;border:2px dashed rgb(var(--theme-color-black))}.main-content__example>*{width:100%}.main-content__example img{display:block;margin:0 auto}@media screen and (max-width:1400px){.main-content{grid-column-gap:5%;padding-left:5%}}@media screen and (max-width:1100px){.main-content{display:block}.main-content__intro{margin-bottom:20px}.main-content__toc{position:relative;top:0;height:auto;margin-bottom:50px}.main-content__toc-wrapp{max-height:50vh;padding:20px}}@media screen and (max-width:768px){.main-content{padding-left:0}}</style>
+    <link rel="preload" as="style" href="/css/main.css?v=1.0.0" onload="this.rel='stylesheet'">
+    <noscript>
+      <link rel="stylesheet" href="/css/main.css?v=1.0.0">
+    </noscript>
+    <link rel="preload" as="font" href="/fonts/roboto/roboto-regular.woff2" type="font/woff2" crossorigin="anonymous">
+    <link rel="canonical" href="http://localhost:3000">
+    <meta name="application-name" content="Документация — Описание по разворачиванию сборки проекта и дальнейшей его поддержки.">
+    <meta name="apple-mobile-web-app-title" content="Документация — Описание по разворачиванию сборки проекта и дальнейшей его поддержки.">
+    <meta property="og:title" content="Документация — Описание по разворачиванию сборки проекта и дальнейшей его поддержки.">
+    <meta property="og:locale" content="ru">
+    <meta property="og:description" content="Описание по разворачиванию сборки проекта и дальнейшей его поддержки.">
+    <meta property="og:url" content="http://localhost:3000">
+    <meta property="og:site_name" content="Описание по разворачиванию сборки проекта и дальнейшей его поддержки.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="http://localhost:3000/img/cover.jpg">
+    <meta property="twitter:card" content="summary">
+    <meta property="twitter:title" content="Документация — Описание по разворачиванию сборки проекта и дальнейшей его поддержки.">
+    <meta property="twitter:image" content="http://localhost:3000/img/cover.jpg">
+    <script type="application/ld+json">
+      {
+        "@context":"https://schema.org",
+        "@type":"WebSite",
+        "headline":"Документация — Описание по разворачиванию сборки проекта и дальнейшей его поддержки.",
+        "description":"Описание по разворачиванию сборки проекта и дальнейшей его поддержки.",
+        "name":"Описание по разворачиванию сборки проекта и дальнейшей его поддержки.",
+        "url":"http://localhost:3000"
+      }
+      
+    </script>
+    <meta name="theme-color" content="#9013fe">
+    <meta name="msapplication-navbutton-color" content="#9013fe">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#9013fe">
+    <link rel="icon" href="/img/favicon.ico" sizes="any">
+    <link rel="icon" href="/img/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+    <link rel="manifest" href="/manifest.json">
+  </head>
+  <body>
+    <div hidden>
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><symbol id="icon-arrow-bottom" viewBox="0 0 12 12"><path d="M10.23 3.173a.753.753 0 00-1.056.096L6 7.08l-3.175-3.81a.75.75 0 10-1.15.961l3.75 4.5a.75.75 0 001.15 0l3.75-4.5a.751.751 0 00-.094-1.057z" fill="#B4B4B4"/></symbol> <view id="icon-arrow-bottom-view" viewBox="0 0 12 12"/> <use xlink:href="#icon-arrow-bottom" x="0" y="0" width="12" height="12"/></svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><symbol id="icon-book" viewBox="0 0 20 20"><path d="M19.85 9.512a.591.591 0 00-.835-.05l-1.745 1.544-4.93 4.361a1.68 1.68 0 01-1.468.385l-2.817-.624-3.402-.751-2.386-.528-.341-.076a1.033 1.033 0 01-.605-.52 1.043 1.043 0 01.088-1.095c.096-.136.226-.243.372-.317.145-.076.308-.115.475-.115l.084.002 2.46.531 5.702 1.234a2.261 2.261 0 001.985-.516l3.507-3.09 3.58-3.153c.322-.285.457-.726.348-1.14a1.134 1.134 0 00-.862-.828l-.446-.096-3.253-.703-4.119-.889a2.26 2.26 0 00-1.985.517L3.755 8.428 2.1 9.882.66 11.147c-.059.068-.11.135-.154.209A2.257 2.257 0 000 12.776 2.252 2.252 0 00.928 14.6c.192.141.412.254.652.328l.026.008 2.51.55 2.377.52 4.127.903a2.873 2.873 0 002.504-.65l.142-.123 4.9-4.34 1.633-1.445a.595.595 0 00.05-.839z" fill="#D00000"/></symbol> <view id="icon-book-view" viewBox="0 0 20 20"/> <use xlink:href="#icon-book" x="0" y="0" width="20" height="20"/></svg></div><!--[if IE]>
+    <p class="browser-upgrade">Вы используете <strong>устаревший</strong> браузер, сайт может отображаться некорректно.<br>
+      Пожалуйста <a rel="nofollow" href="https://browsehappy.com/" target="_blank">обновите</a>!
+    </p><![endif]-->
+    <noscript>
+      <p class="browser-upgrade"><b>Javascript</b> отключен, некоторые функции сайта недоступны.<br>
+        Пожалуйста <a rel="nofollow" href="https://support.google.com/adsense/answer/12654" target="_blank">включите javascript</a>!<br>
+        
+      </p>
+    </noscript>
+    <div class="container">
+      <header class="main-header">
+        <nav class="main-header__nav main-nav"><a class="main-header__logo main-logo" href="/docs"><img class="main-logo__img" src="/img/logo.svg" width="101" height="44" alt="Логотип Docs" loading="lazy"></a>
+          <ul class="main-nav__list">
+            <li class="main-nav__item main-nav__item--close"><strong class="main-nav__title">
+                <svg class="icon icon-book main-nav__icon" width="20" height="20" aria-hidden="true">
+                  <use xlink:href="#icon-book"></use>
+                </svg>Вводная информация
+                <button class="main-nav__toggle" aria-expanded="false">
+                  <svg class="icon icon-arrow-bottom" width="12" height="12" aria-hidden="true">
+                    <use xlink:href="#icon-arrow-bottom"></use>
+                  </svg><span class="sr-only">Подменю раздела<strong>Вводная информация</strong></span>
+                </button></strong>
+              <ul class="main-nav__sub-nav">
+                <li class="main-nav__sub-item"><a class="main-nav__link" href="#">Раздел 1</a></li>
+                <li class="main-nav__sub-item"><a class="main-nav__link" href="#">Раздел 2</a></li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </header>
+      <main class="main-content">
+        <div class="main-content__intro">
+          <h1>Документация</h1>
+          <p>Описание по разворачиванию сборки проекта и дальнейшей его поддержки.</p>
+        </div>
+        <div class="main-content__toc">
+          <div class="main-content__toc-wrapp"><strong>Оглавление страницы:</strong><ul>
+<li><a href="#part">Раздел</a>
+<ul>
+<li><a href="#sub-info">Подраздел</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+        <div class="main-content__content">
+          <h2 id="part">Раздел&nbsp;<a href="#part" aria-label="Ссылка на раздел: Раздел"></a></h2><p>Пример <a href="/index.html"><strong>ссылки</strong></a> на раздел.</p>
+
+          <h3 id="sub-info">Подраздел&nbsp;<a href="#sub-info" aria-label="Ссылка на раздел: Подраздел"></a></h3><p>Пример подраздела.</p>
+
+        </div>
+      </main>
+    </div>
+    <script src="/js/main.js?v=1.0.0" type="module"></script>
+  </body>
+</html>
