@@ -17,15 +17,10 @@ const config = {
 
   // Замена текста в файлах указанных выше, укажите в параметре new свое значение
   replacement: {
-    // dev или prod режим, при значении prod на странице отобразятся скрипты Google Analitics и Yandex Metrika
-    env: {
-      old: 'dev',
-      new: 'dev',
-    },
     // ссылка на сайт, используется для seo
     url: {
       old: 'http://localhost:3000',
-      new: 'http://localhost:3000',
+      new: 'https://eliofery.github.io/gulp-template-docs',
     },
     title: {
       old: 'Название проекта',
@@ -67,6 +62,7 @@ const config = {
     // Шаблонизатор pug
     pug: {
       root: `${srcPath}/pug`, // корневой каталог pug
+      data: `${srcPath}/pug/data`, // конфиги и json данные
       pages: `${srcPath}/pug/pages`, // pug страницы для компиляции в html
     },
 

@@ -1,12 +1,16 @@
 //- dev или prod
-- var env = "dev";
+- var env = "prod";
 
-- var siteVersion = "1.0.0";
+- var siteVersion = "1.0.6";
 - var siteColor = "#9013fe";
 
-- var siteUrl = "http://localhost:3000";
+- var siteUrl = "https://eliofery.github.io/gulp-template-docs";
+- var baseUrl = "/";
 - var siteTitle = "Документация";
 - var siteDescription = "Документация по Gulp сборке";
 
 - var google = "GTM-XXXXXX";
 - var yandex = "XXXXXX";
+
+if (env === "prod")
+  - var baseUrl = "/gulp-template-docs/";  
