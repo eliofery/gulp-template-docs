@@ -5,12 +5,26 @@
       "icon": "icon-book",
       "links": [
         {
-          "name": "Раздел 1",
-          "link": "#"
+          "name": "Описание сборки",
+          "link": "intro/feature.html"
         },
         {
-          "name": "Раздел 2",
-          "link": "#"
+          "name": "Установка сборки",
+          "link": "intro/install.html"
+        }
+      ]
+    },
+    {
+      "title": "Ресурсы",
+      "icon": "icon-project",
+      "links": [
+        {
+          "name": "Иерархия файлов",
+          "link": "resource"
+        },
+        {
+          "name": "Gulp",
+          "link": "resource/gulp.html"
         }
       ]
     }

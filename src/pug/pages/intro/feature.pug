@@ -1,0 +1,64 @@
+extends ../../layouts/default.pug
+
+block variables
+  - var pageTitle = "Описание сборки";
+  - var pageDesc = "Pug, scss, webpack.";
+
+block intro
+  h1 #{ pageTitle }
+  p #{ pageDesc }
+
+block append toc
+  :markdown-it
+    - [Введение](intro/feature.html#intro)
+    - [Основа сборки](intro/feature.html#base)
+    - [Особенности сборки](intro/feature.html#feature)
+
+block content
+  +h2("Введение", "intro/feature.html", "intro")
+  :markdown-it
+    Цель данной сборки, обеспечить комфортную работу с минимальной начальной настройкой проекта.
+  
+  +h3("Основа сборки", "intro/feature.html", "base")
+  :markdown-it
+    Сборка содержит шаблонизатор **Pug**, препроцессор **SCSS**, сборщик модулей **Webpack**.  
+  
+  +h3("Особенности сборки", "intro/feature.html", "feature")
+  :markdown-it
+    **Оптимизация под Page Speed**
+      - Отложенная загрузка
+      - Критические стили
+    
+    **Базовая SEO оптимизация**
+      - Open Graph / Twitter Cards
+      - JSON-LD микроразметка
+      - Google Analytics / Yandex Metrika
+    
+    **Pug шаблонизатор**
+      - Улучшенный фильтр markdown-it
+      - Возможность добавлять свои фильтры на примере фильтра special-chars
+      - Работа с json данными
+    
+    **SCSS препроцессор**
+    
+    **Webpack сборщик**
+      - Возможность использовать новый формат JS по максимуму
+      - Оптимизация кода через Babel
+    
+    **SVG спрайты**
+      - Цветные
+      - Черно-белые
+    
+    **Оптимизированные изображения**
+      - Генерация webp и avif форматов
+    
+    **Настроенные линтеры**
+      - Stylelint
+      - Pug-lint
+      - ES-Lint
+      - Prettier
+      - Editorconfig
+    
+    **Автоматическая генерация favicons**
+
+  

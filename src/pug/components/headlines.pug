@@ -1,19 +1,19 @@
-mixin h2(title, link = "")
+mixin h2(title, path = "", link = "")
   h2(id=link) #{title}&nbsp;
-    a(href="#" + link, aria-label="Ссылка на раздел: " + title)
+    a(href=path + "#" + link, aria-label="Ссылка на раздел: " + title)
 
-mixin h3(title, link = "")
+mixin h3(title, path = "", link = "")
   h3(id=link) #{title}&nbsp;
-    a(href="#" + link, aria-label="Ссылка на раздел: " + title)
+    a(href=path + "#" + link, aria-label="Ссылка на раздел: " + title)
 
-mixin h4(title, link = "")
+mixin h4(title, path = "", link = "")
   h4(id=link) #{title}&nbsp;
-    a(href="#" + link, aria-label="Ссылка на раздел: " + title)
+    a(href=path + "#" + link, aria-label="Ссылка на раздел: " + title)
 
-mixin h5(title, link = "")
+mixin h5(title, path = "", link = "")
   h5(id=link) #{title}&nbsp;
-    a(href="#" + link, aria-label="Ссылка на раздел: " + title)
+    a(href=path + "#" + link, aria-label="Ссылка на раздел: " + title)
 
-mixin h6(title, link = "")
+mixin h6(title, path = "", link = "")
   h6(id=link) #{title}&nbsp;
-    a(href="#" + link, aria-label="Ссылка на раздел: " + title)
+    a(href=path + "#" + link, aria-label="Ссылка на раздел: " + title)

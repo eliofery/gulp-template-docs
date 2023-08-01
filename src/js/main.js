@@ -1,4 +1,10 @@
-// Пользовательские скрипты
-import nav from '@/components/main-nav'
+// Сторонние скрипты
+import hljs from 'highlight.js/lib/common' // оформление блока кода
 
-nav() // главная навигация
+// Пользовательские скрипты
+import mainNav from '@/components/main-nav' // главная навигация
+import codeBlock from '@/components/code-block' // копирование содержимого <code>
+
+hljs.highlightAll()
+codeBlock()
+mainNav()

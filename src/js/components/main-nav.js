@@ -2,7 +2,7 @@
  * Главная навигация
  */
 
-const nav = () => {
+const mainNav = () => {
   const header = document.querySelector('.main-header')
   const items = document.querySelectorAll('.main-nav__title')
   let itemsShow = localStorage.getItem('menuItemsShow') || [] // открытые пункты меню
@@ -68,4 +68,4 @@ const nav = () => {
   })
 }
 
-export default nav
+export default mainNav

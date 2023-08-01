@@ -1,0 +1,119 @@
+extends ../../layouts/default.pug
+
+block variables
+  - var pageTitle = "Установка";
+  - var pageDesc = "Инструкция по установке.";
+
+block intro
+  h1 #{ pageTitle }
+  p #{ pageDesc }
+
+block append toc
+  :markdown-it
+    - [Шаг 1](intro/install.html#step-1)
+    - [Шаг 2](intro/install.html#step-2)
+    - [Шаг 3](intro/install.html#step-3)
+    - [Шаг 4](intro/install.html#step-4)
+    - [Шаг 5](intro/install.html#step-5)
+
+block content
+  +h2("Шаг 1", "intro/install.html", "step-1")
+  :markdown-it
+    Скачать или клонировать **Gulp сборку**.
+    
+  +code("").
+    git clone git@github.com:eliofery/gulp-template.git
+
+  +h2("Шаг 2", "intro/install.html", "step-2")
+  :markdown-it
+    Установить зависимости.
+    
+  +code("").
+    npm i
+  
+  +h2("Шаг 3", "intro/install.html", "step-3")
+  :markdown-it
+    Загрузите свою svg favicon в каталог **./src/assets/favicons** с именем **icon.svg**.
+    
+    Favicon должен быть размером не менее **512x512**, например:
+    
+  +code().
+    &lt;svg xmlns="http://www.w3.org/2000/svg" width="512" height="512"&gt;...&lt;/svg&gt; 
+
+  :markdown-it
+    При сборке проекта на основе **icon.svg** будут созданы другие необходимые favicons.
+
+  +h2("Шаг 4", "intro/install.html", "step-4")
+  :markdown-it
+    Отредактировать файл **package.json**, изменив название, описание, версию проекта, ссылки на репозиторий и т.д.
+    
+    Внести изменения в файл **./gulp/config.js**, в разделе replacement, согласно наименованию вашего проекта. Изменять следует только свойство **new**, например:
+    
+  +code("js").
+    ...
+    // Замена текста в файлах
+    replacement: {
+      env: { old: 'dev', new: 'prod' },
+      url: { old: 'http://localhost', new: 'https://site.domen' },
+      title: { old: 'Название сайта', new: 'Новое имя сайта' },
+      desc: { old: 'Описание сайта', new: 'Новое описание сайта' },
+      version: { old: '1.0.0', new: '2.0.0' },
+      color: { old: '#000', new: '#777' },
+      google: { old: 'GTM-XXXXXX', new: 'GTX-325264' },
+      yandex: { old: 'XXXXXX', new: 'jsdhgy7562' },
+    },
+    ...
+  
+  :markdown-it
+    **Gulp** будет искать значения прописанные в параметрах **old** и менять их на значения параметров **new**, в файлах:
+
+  +code("js").
+    // Файлы в которых производится замена текста
+    files: [
+    `${srcPath}}/assets/manifest.json`,
+    `${srcPath}}/pug/data/config.pug`,
+    `${srcPath}/pug/pages/index.pug`,
+    ],
+  
+  :markdown-it
+    После чего выполните команду, которая заменит текст:
+    
+  +code("").
+    npm run replaces
+    
+  :markdown-it
+    Или, чтобы заменить текст и автоматически удалить промо страницу с инструкцией, выполните команду:
+
+  +code("").
+    npm run preperate
+    
+  +h2("Шаг 5", "intro/install.html", "step-5")
+  :markdown-it
+    Теперь вы готовы приступить к верстке своего проекта.
+    
+    Соберет проект и запустит Live Server в режиме разработки. Файлы не будут минифицированы, а картинки оптимизированы.
+    
+  +code("").
+    npm run dev
+    
+  :markdown-it
+    Соберет проект в режиме продакшн. Файлы будут минифицированы, а картинки оптимизированы.
+
+  +code("").
+    npm run build
+    
+  :markdown-it
+    Запустит Live Server без компиляции проекта. Если не хочется заново компилировать проект, а только запустить сервер.
+  
+  +code("").
+    npm run proxy
+    
+  hr
+  
+  :markdown-it
+    Если при сборке возникнет ошибка: **DSO support routines:DLFCN_LOAD:could not load the shared library:dso_dlfcn.c:185:filename(libproviders.so)**.
+    
+    Обнулите значение переменной **OPENSSL_CONF**:
+    
+  +code("").
+    export OPENSSL_CONF=/dev/null

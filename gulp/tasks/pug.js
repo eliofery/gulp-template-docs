@@ -66,7 +66,7 @@ export const pugToHtml = () => {
     .pipe(
       pug({
         doctype: 'html', // чтобы не было обратного слеша у одиночных тэгов
-        pretty: true, // сжатие html разметки
+        pretty: false, // сжатие html разметки
         plugins: [pugIncludeGlob()], // подключаем сторонние pug плагины
         locals: {
           // передаем jsonData в pug, далее используем его примерно так: #{jsonData.nav.home.link}
