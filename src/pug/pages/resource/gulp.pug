@@ -1,0 +1,86 @@
+extends ../../layouts/default.pug
+
+block variables
+  - var pageTitle = "Gulp таски";
+  - var pageDesc = "Описание тасков, что они делают, за что отвечают.";
+
+block intro
+  h1 #{ pageTitle }
+  p #{ pageDesc }
+
+block append toc
+  :markdown-it
+    - [Структура](resource/gulp.html#structure)
+    - [Таски](resource/gulp.html#tasks)
+    - [gulpfile.babel.js](resource/gulp.html#gulpfile)
+      - [Основные команды](resource/gulp.html#command)
+      - [Продакшн](resource/gulp.html#product)
+
+block content
+  +h2("Структура", "resource/gulp.html", "structure")
+  :markdown-it
+    Все таски хранятся в каталоге **./gulp**:
+
+  +code("").
+    ./gulp
+    ├── config.js
+    └── tasks
+        ├── assets.js
+        ├── clear.js
+        ├── favicons.js
+        ├── images.js
+        ├── prepare.js
+        ├── pug.js
+        ├── server.js
+        ├── sprites.js
+        ├── styles.js
+        └── webpack.js
+
+  +h2("Таски", "resource/gulp.html", "tasks")
+  :markdown-it
+    Разберем значение файлов:
+    
+    - **config** - хранит часто используемые в тасках данные, например пути к файлам и каталогам и т.п.;
+    - **assets** - переносит определенные файлы из одного места в другое;
+    - **clear** - удаляет каталог build, хранящий собранную версию;
+    - **favicons** - генерирует фавиконки;
+    - **images** - оптимизирует картинки;
+    - **prepare** - подготавливает сборку к работе;
+    - **pug** - преобразует pug в html;
+    - **server** - виртуальный сервер (live server);
+    - **sprites** - создает svg спрайт;
+    - **styles** - компилирует scss в css;
+    - **webpack** - преобразует js код из нового формата в старый, для кроссбраузерности.
+  
+  +h2("gulpfile.babel.js", "resource/gulp.html", "gulpfile")
+  :markdown-it
+    Это файл конфигурации для инструмента сборки **Gulp**, который используется для автоматизации различных задач в проекте. 
+    
+    Он собирает все таски воедино и дает возможность вызывать их из консоли, тем самым обеспечивая сборку проекта.
+    
+  +h3("Основные команды", "resource/gulp.html", "command")
+
+  +code("Режим разработки").
+    gulp watch    
+  
+  +code("Сборка проекта").
+    gulp build
+  
+  +code("Live server").
+    gulp proxy
+  
+  +code("Замена содержимого в файлах").
+    gulp replaces
+  
+  +code("Подготовка сборки к работе").
+    gulp prepare
+
+  +h3("Продакшн", "resource/gulp.html", "product")
+  :markdown-it
+    Если добавить к любой команде **--prod**, то она выполнится в режиме продакшн, например:  
+
+  +code("Сборка проекта режим продакшн").
+    gulp build --prod
+
+  :markdown-it
+    В данном случае будет запущен **Live Server**, файлы будут минифицированы, а картинки оптимизированы.

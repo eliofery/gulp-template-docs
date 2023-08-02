@@ -1,0 +1,107 @@
+extends ../../layouts/default.pug
+
+block variables
+  - var pageTitle = "Иерархия файлов";
+  - var pageDesc = "Описывает структуру проекта.";
+
+block intro
+  h1 #{ pageTitle }
+  p #{ pageDesc }
+
+block append toc
+  :markdown-it
+    - [Корневой каталог](resource#root)
+        - [Каталоги](resource#root-dir)
+        - [Файлы](resource#root-files)
+    - [Каталог gulp](resource#gulp)
+    - [Каталог src](resource#src)
+
+block content
+  +h2("Корневой каталог", "resource/hierarchy.html", "root")
+  :markdown-it
+    Исходная структура сборки выглядит следующим образом:
+
+  +code("").
+    ├── .babelrc
+    ├── .editorconfig
+    ├── .eslintcache
+    ├── .eslintignore
+    ├── .eslintrc.js
+    ├── .gitattributes
+    ├── .github
+    ├── .gitignore
+    ├── gulp
+    ├── gulpfile.babel.js
+    ├── .husky
+    ├── package.json
+    ├── package-lock.json
+    ├── .prettierrc
+    ├── .pug-lintrc
+    ├── README.md
+    ├── src
+    ├── .stylelintignore
+    ├── .stylelintrc
+    └── webpack.config.js
+
+  +h3("Каталоги", "resource/hierarchy.html", "root-dir")
+  :markdown-it
+    Разберем значение каталогов:
+    
+    - **.github** - содержит github actions;
+    - **.husky** - содержит скрипты и конфигурационные файлы, которые определяют, какие команды или скрипты должны выполняться на определенных хуках Git;
+    - **gulp** - содержит gulp таски;
+    - **src** - содержит исходные файлы поекта.
+  
+  +h3("Файлы", "resource/hierarchy.html", "root-files")
+  :markdown-it
+    Разберем значение файлов:
+
+    - **.babelrc** - конфигурационный файл для [babel](intro/index.html#babel);
+    - **.editorconfig** - конфигурационный файл содержит стилитические правила для редактора кода;
+    - **.eslintignore** - конфигурационный файл содержит пути к каталогам которые не должен проверять JavaScript [линтер](intro/index.html#linter);
+    - **.eslintrc** - конфигурационный файл содержит правила JavaScript [линтера](intro/index.html#linter);
+    - **.gitattributes** - конфигурационный файл содержит определения настроек, связанных с обработкой файлов при работе с репозиторием;
+    - **.gitignore** - конфигурационный файл содержит файлы и каталоги которые не должны сохраняться в репозитории;
+    - **.prettierrc** - конфигурационный файл правил Prettier [линтера](intro/index.html#linter);
+    - **.pug-lintrc.json** - конфигурационный файл правил Pug [линтера](intro/index.html#linter);
+    - **.stylelintignore** - конфигурационный файл содержит пути к каталогам которые не должен проверять CSS [линтер](intro/index.html#linter);
+    - **.stylelintrc.json** - конфигурационный файл правил CSS [линтера](intro/index.html#linter);
+    - **package.json** - конфигурационный файл содержит описания метаданных и зависимостей проекта;
+    - **package-lock.json** - конфигурационный файл содержит информацию о дереве зависимостей;
+    - **gulpfile.babel.js** - содержит набор тасков которые участвуют в сборке проекта;
+    - **README.md** - содержит описание сборки.
+
+  +h2("Каталог gulp", "resource/hierarchy.html", "gulp")
+  :markdown-it
+    Содержит таски сборки, разбитые на отдельные модули. Более подробное описание по каждому файлу каталога gulp можно будет найти в разделе [**Gulp**](resource/gulp.html).
+
+  +code("").
+    ├── config.js
+    └── tasks
+      ├── assets.js
+      ├── clear.js
+      ├── favicons.js
+      ├── images.js
+      ├── prepare.js
+      ├── pug.js
+      ├── server.js
+      ├── sprites.js
+      ├── styles.js
+      └── webpack.js
+
+  +h2("Каталог src", "resource/hierarchy.html", "src")
+  :markdown-it
+    Содержит исходные файлы сборки такие как изображения, шрифты, верстку, стили, скрипты. Более подробное описание по каждому разделу исходных файлов можно будет найти в разделах:
+    - [Assets](#)
+    - [JS](#)
+    - [Libs](#)
+    - [Pug](#)
+    - [Scss](#)
+
+  +code("").
+    ./src
+    ├── assets
+    ├── js
+    ├── libs
+    ├── pug
+    └── scss
