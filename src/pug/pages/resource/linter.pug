@@ -1,0 +1,41 @@
+extends ../../layouts/default.pug
+
+block variables
+  - var pageTitle = "Linter";
+  - var pageDesc = "Настройка и использование линтера в сборке.";
+
+block intro
+  h1 #{ pageTitle }
+  p #{ pageDesc }
+
+block append toc
+  :markdown-it
+    - [Инициализация Git](resource/linter.html#git)
+    - [Установка Linter](resource/linter.html#linter)
+      - [Расширения](resource/linter.html#extensions)
+
+block content
+  +h2("Инициализация Git", "resource", "git")
+  :markdown-it
+    [**Линтер**](intro/index.html#linter) не будет работать без инициализации [**git**](intro/index.html#git). Если каталог **.git** отсутствует в корне проекта, то необходимо его создать командой **git init**.
+
+  +code("") $ git init
+  
+  +h2("Установка Linter", "resource", "linter")
+  :markdown-it
+    Для того чтобы установить [**линтер**](intro/index.html#linter), откроем в терминале каталог с проектом и выполним команду:
+
+  +code("") $ npm run prepare
+
+  +h3("Расширения", "resource", "extensions")
+  :markdown-it
+    При работе над проектом, чтобы видеть ошибки [**линтера**](intro/index.html#linter) в текстовом редакторе необходимо установить соответствующие расширения.
+
+    В качестве примера будет рассмотрен популярный текстовый редактор [**VSCode**](https://code.visualstudio.com/download){target="_blank"}.  
+
+    Откроем **VSCode** и установим следующие расширения:
+    - **ESLint** - проверяет js файлы;
+    - **Puglint** - проверяет pug файлы;
+    - **Stylelint** - проверяет scss файлы;
+    - **Editorconfig** - задает стандарты форматирования для текстовых редакторов и сред разработки;
+    - **Prettier - Code formatter** - инструмент автоматического форматирования кода, который позволяет поддерживать единообразный и согласованный стиль кодирования в проекте, горячие клавиши [[Ctrl]] + [[Alt]] + [[L]].

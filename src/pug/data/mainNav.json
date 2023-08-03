@@ -25,6 +25,10 @@
         {
           "name": "Gulp",
           "link": "resource/gulp.html"
+        },
+        {
+          "name": "Linter",
+          "link": "resource/linter.html"
         }
       ]
     }
