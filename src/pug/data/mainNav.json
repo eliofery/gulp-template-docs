@@ -37,6 +37,10 @@
         {
           "name": "Scss",
           "link": "resource/scss.html"
+        },
+        {
+          "name": "JS",
+          "link": "resource/js.html"
         }
       ]
     }

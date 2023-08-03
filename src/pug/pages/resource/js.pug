@@ -1,0 +1,72 @@
+extends ../../layouts/default.pug
+
+block variables
+  - var pageTitle = "JS";
+  - var pageDesc = "Использование webpack в сборке.";
+
+block intro
+  h1 #{ pageTitle }
+  p #{ pageDesc }
+
+block append toc
+  :markdown-it
+    - [Gulp таск](resource/js.html#gulp)
+    - [Иерархия файлов](resource/js.html#hierarchy)
+    - [Каталог components](resource/js.html#components)
+
+block content
+  +h2("Gulp таск", "resource", "gulp")
+  :markdown-it
+    Файлы **js** собираются [**таском**](intro/index.html#task) **./gulp/tasks/webpack.js**.
+
+  +h2("Иерархия файлов", "resource", "hierarchy")
+  :markdown-it
+    Файловая структура **js** содержит скрипты **документации** и **сайта**, выглядит следующим образом:
+
+  +code("").
+    ./src/js
+    ├── components
+    └── main.js
+
+  :markdown-it
+    - **components** - содержит js скрипты;
+    - **main.js** - главный файл объединяющий все скрипты. 
+
+  +h2("Каталог components", "resource", "components")
+  :markdown-it
+    Пример создание компонента:
+
+  +code("js")
+    .
+      // Файл code.js
+      import Clipboard from "clipboard";
+
+      const code = () => {
+        const clipboard = new Clipboard(".code-block__button", {
+          target: (trigger) => trigger.parentElement.nextElementSibling,
+        });
+
+        clipboard.on("success", (evt) => {
+          let { text } = evt;
+
+          if (text[0] === "$") {
+            text = text.replaceAll("$ ", "");
+          }
+
+          navigator.clipboard.writeText(text);
+
+          evt.clearSelection();
+        });
+      };
+
+      export default code;
+
+  :markdown-it
+    Пример подключения компонента:
+
+  +code("js")
+    .
+      // Файл main.js
+      import code from "@/components/code";
+
+      code();
