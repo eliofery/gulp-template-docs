@@ -41,6 +41,10 @@
         {
           "name": "JS",
           "link": "resource/js.html"
+        },
+        {
+          "name": "Assets",
+          "link": "resource/assets.html"
         }
       ]
     }

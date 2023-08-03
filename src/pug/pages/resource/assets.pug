@@ -1,0 +1,76 @@
+extends ../../layouts/default.pug
+
+block variables
+  - var pageTitle = "Assets";
+  - var pageDesc = "Собирает оставшиеся исходные файлы: шрифты, библиотеки и т.п.";
+
+block intro
+  h1 #{ pageTitle }
+  p #{ pageDesc }
+
+block append toc
+  :markdown-it
+    - [Gulp таск](resource/assets.html#gulp)
+    - [Иерархия файлов](resource/assets.html#hierarchy)
+    - [Каталог libs](resource/assets.html#libs)
+
+block content
+  +h2("Gulp таск", "resource", "gulp")
+  :markdown-it
+    За файлы **assets** отвечает [**таск**](intro/index.html#task) **./gulp/tasks/assets.js**.
+
+  +h2("Иерархия файлов", "resource", "hierarchy")
+  :markdown-it
+    Файловая структура **js** выглядит следующим образом:
+
+  +code("").
+    ./src/assets
+    ├── favicons
+    ├── fonts
+    ├── icons
+    ├── images
+    ├── manifest.json
+    └── robots.txt
+
+  :markdown-it
+    - **libs** - содержит сторонние библиотеки;
+    - **fonts** - содержит шрифты;
+    - **icons** - содержит svg иконки;
+        - **mono** - svg иконки чернобелые;
+        - **multi** - svg иконки цветные;
+    - **images** - содержит изображения
+    - **manifest.json** - содержит JSON-файл, который описывает иконки и настройки для интеграции веб-приложения в браузер и ОС
+    - **robots.txt** - содержит инструкции для поисковых роботов (краулеров), которые обходят веб-сайты для индексации содержимого. 
+
+  +h2("Каталог libs", "resource", "libs")
+  :markdown-it
+    Бывают моменты, когда необходимо обращаться к картинкам, шрифтам и прочим файлам, сторонних библиотек и удобней это делать, если библиотеки находятся в каталоге с исходными файлами. 
+    
+    Чтобы автоматизировать процесс копирования библиотек, была добавлена в [**таск**](intro/index.html#task) **./gulp/tasks/assets.js** функция, которая копирует в каталог **libs**, указанные в нем библиотеки из каталога **node_modules**.
+
+    **Пример функции:**
+
+  +code("js")
+    .
+      const componentsBuild = () => {
+        const folders = [
+          `${config.node}/slick-carousel/slick`, 
+          `${config.node}/jquery/dist`, 
+          `${config.node}/normalize.css`,
+          ];
+
+        const tasks = folders.map(folder => {
+          const pathFolder = `node_modules/${folder}`
+          const nameFolder = pathFolder.match(/^[a-zA-Z0-9_]*\/([a-zA-Z0-9-_.]*)/)[1]
+  
+          return src(`${pathFolder}/**/*`).pipe(
+            dest(`${config.src.libs}/${nameFolder}`),
+          )
+        })
+  
+        return merge(tasks)
+      };
+
+  :markdown-it
+    В переменной **folders** прописываются пути к **node_modules** библиотекам, которые необходимо перенести в каталог **libs**. 
+
