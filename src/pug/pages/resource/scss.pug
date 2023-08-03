@@ -1,0 +1,44 @@
+extends ../../layouts/default.pug
+
+block variables
+  - var pageTitle = "Scss";
+  - var pageDesc = "Использование препроцессора scss в сборке.";
+
+block intro
+  h1 #{ pageTitle }
+  p #{ pageDesc }
+
+block append toc
+  :markdown-it
+    - [Gulp таск](#gulp)
+    - [Иерархия файлов](#hierarchy)
+
+block content
+  +h2("Gulp таск", "gulp")
+  :markdown-it
+    Файлы препроцессора [**scss**](intro/index.html#scss) собираются [**таском**](intro/index.html#task) **./gulp/tasks/styles.js**.
+
+  +h2("Иерархия файлов", "hierarchy")
+  :markdown-it
+    Файловая структура [**scss**](intro/index.html#scss) выглядит следующим образом:
+
+  +code("shell").
+    ./src/scss/
+    ├── core
+    │   ├── base
+    │   └── helpers
+    ├── _critical.scss
+    ├── main.scss
+    └── scaffolds
+        ├── components
+        └── sections
+
+  :markdown-it
+    - **core** - содержит базовые настройки стилей для всего проекта;
+        - **base** - содержит базовые стили, подключает кастомные шрифты;
+        - **helpers** - содержит переменные, миксины;
+    - **scaffolds** - содержит стили секций и компонентов сайта;
+        - **components** - содержит стили повторяющихся элементов на сайте;
+        - **sections** - содержит стили целых секций сайта;
+    - **main.scss** - основной файл объединяющий все стили. 
+    - **_critical.scss** - содержит критические стили. 

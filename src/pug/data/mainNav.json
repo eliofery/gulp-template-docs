@@ -33,6 +33,10 @@
         {
           "name": "Pug",
           "link": "resource/pug.html"
+        },
+        {
+          "name": "Scss",
+          "link": "resource/scss.html"
         }
       ]
     }
