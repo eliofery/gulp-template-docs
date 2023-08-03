@@ -1,0 +1,333 @@
+extends ../../layouts/default.pug
+
+block variables
+  - var pageTitle = "Pug";
+  - var pageDesc = "Использование шаблонизатора pug в сборке.";
+
+block intro
+  h1 #{ pageTitle }
+  p #{ pageDesc }
+
+block append toc
+  :markdown-it
+    - [Gulp таск](resource/pug.html#gulp)
+    - [Иерархия файлов](resource/pug.html#hierarchy)
+    - [Каталог components](resource/pug.html#components)
+    - [Каталог data](resource/pug.html#data)
+    - [Каталог layouts](resource/pug.html#layouts)
+    - [Каталог markdown](resource/pug.html#markdown)
+    - [Каталог pages](resource/pug.html#pages)
+    - [Каталог parts](resource/pug.html#parts)
+    - [Дополнительный функционал](resource/pug.html#add)
+
+block content
+  +h2("Gulp таск", "resource", "gulp")
+  :markdown-it
+    Файлы шаблонизатора [**pug**](intro/index.html#pug) собираются [**таском**](intro/index.html#task) **./gulp/tasks/pug.js**.
+
+  +h2("Иерархия файлов", "resource", "hierarchy")
+  :markdown-it
+    Файловая структура [**pug**](intro/index.html#pug) выглядит следующим образом:
+
+  +code("shell").
+    ./src/pug/
+    ├── components
+    ├── data
+    ├── layouts
+    ├── markdown
+    ├── pages
+    ├── parts
+    └── README.md
+
+
+  :markdown-it
+    - **components** - содержит [**миксины**](intro/index.html#mixin) часто встречаемых элементов на сайте;
+    - **data** - содержит переменные и различные данные для вывода на сайте;
+    - **layouts** - содержит шаблоны из которых собираются страницы сайта;
+    - **markdown** - содержит документы в формате **.md** для последующего подключения их содержимого на страницах;
+    - **pages** - содержит отдельные страницы проекта;
+    - **parts** - содержит общие, повторяющиеся для всех страниц элементы, такие как шапка, подвал сайта и т.п. 
+
+  +h2("Каталог components", "resource", "components")
+  :markdown-it
+    Как создаются [**миксины**](intro/index.html#mixin) в **pug** можно узнать на [**официальном сайте**](https://pugjs.org/language/mixins.html){target="_blank"} шаблонизатора.
+
+    Пример создание миксина:
+
+  +code("pug").
+    // Файл title.pug
+    mixin h2(title, link)
+      h2(id=link) #{title}&nbsp;
+        a(href="#" + link, aria-label="Ссылка на раздел: " + title)
+
+  :markdown-it
+    Пример вызова миксина:
+
+  +code("pug").
+    include ../components/title.pug
+    +h2("Заголовок", "http://link...")
+
+  +h2("Каталог data", "resource", "data")
+  :markdown-it
+    Как создаются переменные в **pug** можно узнать на [**официальном сайте**](https://pugjs.org/language/interpolation.html){target="_blank"} шаблонизатора.
+
+    Пример создание переменных:
+
+  +code("pug").
+    // Файл config.pug
+    - const siteVersion = "1.0";
+    - let siteVersion = "1.0";
+    - var siteVersion = "1.0";
+
+
+  :markdown-it
+    Пример вызова переменных:
+
+  +code("pug").
+    p \#{siteVersion}
+    p Некий текст \#{siteVersion}
+    p(class=siteVersion)
+  
+  :markdown-it
+    Для того чтобы **pug** мог работать с **json** данными необходимо его настроить. Реализация настройки содержится в файле **./gulp/tasks/pug.js**:
+    
+  +code("js").
+    const getData = () => {
+      const dir = config.src.pug.data
+      const files = fs.readdirSync(dir)
+      const data = {}
+    
+      files.forEach(file => {
+        if (!file.endsWith('.json')) return
+    
+        const fileName = file.replace('.json', '')
+    
+        data[fileName] = JSON.parse(fs.readFileSync(`${dir}/${file}`, 'utf8'))
+      })
+    
+      return data
+    }
+  
+  :markdown-it
+    Предположим имеется файл **./src/pug/data/mainNav.json** с содержимым:
+
+  +code("json").
+      {
+          "title": "Вводная информация",
+          "icon": "icon-book",
+          "links": [
+            {
+              "name": "Справочник терминов",
+              "link": "intro/index.html"
+            },
+            {
+              "name": "Иерархия файлов",
+              "link": "intro/hierarchy.html"
+            }
+          ]
+      }
+
+
+  :markdown-it
+    **Логика работы следующая:**
+    1. В каталоге **data** выбираются все файлы с расширением **json**;
+    
+    2. Cодержимое файлов помещается в переменную **jsonData** с ключом **название файла**, например:   
+    имя файла **mainNav.json**  
+    переменная **jsonData["mainNav"]** = содержимое файла **mainNav.json**
+    
+    3. Чтобы получить значение обращаемся к переменной **jsonData**:  
+    p \#\{jsonData.mainNav.title\}  
+    p \#\{jsonData.mainNav.icon\}  
+    each link in jsonData.mainNav.links  
+    &nbsp;&nbsp;&nbsp;&nbsp;p \#\{link.name\}
+
+  +h2("Каталог layouts", "resource", "layouts")
+  :markdown-it
+    Как создаются шаблоны в **pug** можно узнать на [**официальном сайте**](https://pugjs.org/language/inheritance.html){target="_blank"} шаблонизатора.
+
+    Пример создание шаблона:
+
+  +code("pug").
+    include ../data/*.pug
+    include ../components/*.pug
+
+    block variables
+      - var pageTitle = "Укажите заголовок";
+
+    doctype html
+    html.no-js(lang="ru")
+      head
+        include ../parts/head.pug
+
+      body
+        div(hidden)
+        include ../../assets/icons/sprite-mono.svg
+        include ../../assets/icons/sprite-multi.svg
+    
+        .container
+          block header
+            include ../parts/header.pug
+    
+        main.main-content
+          .main-content__intro
+            block intro
+    
+        .main-content__toc
+          .main-content__toc-wrapp
+            block toc
+              strong Оглавление страницы:
+    
+        .main-content__content
+          block content
+    
+        block scripts
+          script(src="js/main.js?v=" + siteVersion, type="module")
+
+
+
+  +h2("Каталог markdown", "resource", "markdown")
+  :markdown-it
+    Как использовать **markdown** разметку в **pug** можно узнать на официальном сайте шаблонизатора [**здесь**](https://pugjs.org/language/includes.html){target="_blank"} и [**здесь**](https://pugjs.org/language/filters.html){target="_blank"}.
+
+    Пример создание **markdown** разметки:
+
+  +code("markdown").
+    # Заголовок H1
+
+    ### Заголовок H3
+
+    **Жирный текст**
+
+    - Элемент списка 1
+    - Элемент списка 2
+
+    [[Ctrl]] + [[K]]
+
+  :markdown-it
+    Вывести **markdown** разметку в шаблоне **pug** можно двумя способами:
+    1. Прописать непосредственно в самом файле:
+
+  +code("pug")
+    .
+      :markdown-it
+        НИЖЕ ИДЕТ MARKDOWN РАЗМЕТКА с оборачивание в тег &lt;p&gt;
+      
+      :markdown-it(inline)
+        НИЖЕ ИДЕТ MARKDOWN РАЗМЕТКА без оборачивание в тег &lt;p&gt;
+
+  :markdown-it
+    2. Подключить отдельный файл:
+
+  +code("pug") include:markdown-it ../markdown/docs.md
+
+  +h2("Каталог pages", "resource", "pages")
+  :markdown-it
+    Как создаются страницы в **pug** можно узнать на [**официальном сайте**](https://pugjs.org/language/inheritance.html){target="_blank"} шаблонизатора.
+
+    Пример создание страницы:
+
+  +code("pug")
+    .
+      extends ../layouts/default.pug
+
+      block variables
+        - var pageTitle = "Документация";
+        - var pageDesc = "Описание по разворачиванию сборки проекта и дальнейшей его поддержки.";
+
+      block intro
+        h1 \#{ pageTitle }
+        p \#{ pageDesc }
+
+      block append toc
+        :markdown-it
+          - [Начало работы](#start)
+
+      block content
+        +h2("Начало работы", "start")
+        :markdown-it
+          Данный раздел содержит информацию по установке необходимых программ для работы над проектом, на различных операционных системах.
+
+  +h2("Каталог parts", "resource", "parts")
+  :markdown-it
+    Как используются повторяющиеся части страницы в **pug** можно узнать на [**официальном сайте**](https://pugjs.org/language/includes.html){target="_blank"} шаблонизатора.
+
+    Пример создание страницы:
+
+  +code("pug")
+    .
+      // Файл head.pug
+      - var siteTitle = pageTitle ? `${pageTitle} — ${siteTitle}` : siteTitle;
+      - var siteDescription = pageDesc ? pageDesc : siteDescription;
+
+      meta(charset="UTF-8")
+      meta(http-equiv="X-UA-Compatible", content="IE=edge")
+      meta(name="viewport", content="width=device-width, initial-scale=1")
+
+      title \#{ siteTitle }
+      meta(name="description", content=siteDescription)
+      meta(name="theme-color", content=siteColor)
+
+      link(rel="mask-icon", href="favicons/favicon.svg", color=siteColor)
+      link(rel="manifest", href="manifest.json")
+      link(rel="apple-touch-icon", href="favicons/apple-touch-icon.png")
+      link(rel="shortcut icon", href="favicons/favicon.ico", type="image/x-icon")
+
+      link(rel="stylesheet", href="css/style.css?v=" + siteVersion)
+
+      link(rel="preload", href="fonts/roboto/roboto-light.woff2", type="font/woff2", as="font", crossorigin="anonymous")
+      link(rel="preload", href="fonts/roboto/roboto-regular.woff2", type="font/woff2", as="font", crossorigin="anonymous")
+      link(rel="preload", href="fonts/roboto/roboto-medium.woff2", type="font/woff2", as="font", crossorigin="anonymous")
+
+  :markdown-it
+    Пример подключение страницы:
+
+  +code("pug")
+    .
+      html.no-js(lang="ru")
+        head
+          include ../parts/head.pug
+
+  +h2("Дополнительный функционал", "resource", "add")
+  :markdown-it
+    **Pug** позволяет создавать свои пользовательские фильтры наподобии фильтра **markdown-it**, инструкцую по фильтрам можно почитать на [**официальном сайте**](https://pugjs.org/language/filters.html){target="_blank"}. 
+    
+    В данной сборке используется **js** плагин **highlight.js** для подсветки кода, но он не позволяет размещать разметку **html** без экранирования тегов. Средствами **pug** экранировать не удалось, поэтому в [**gulp таске**](intro/index.html#task) **pug.js** была созданна пользовательская функция **special-chars**.
+
+    Пример ее работы, здесь мы вставляем **html** разметку так как она есть, без экранирования:
+
+  +code("pug")
+    .
+      +code("pug")
+        :special-chars
+          &lt;!DOCTYPE html&gt;
+          &lt;html lang=&quot;en&quot;&gt;
+          &lt;head&gt;
+            &lt;meta charset=&quot;UTF-8&quot;&gt;
+            &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
+            &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+            &lt;title&gt;Document&lt;/title&gt;
+          &lt;/head&gt;
+          &lt;body&gt;
+            
+          &lt;/body&gt;
+          &lt;/html&gt;
+
+  
+  :markdown-it
+    На выходе получаем экранируемый код, который корректно отображается в **highlight.js**:
+
+  +code("html")
+    :special-chars
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+      </head>
+      <body>
+        
+      </body>
+      </html>

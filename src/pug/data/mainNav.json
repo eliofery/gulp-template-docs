@@ -29,6 +29,10 @@
         {
           "name": "Linter",
           "link": "resource/linter.html"
+        },
+        {
+          "name": "Pug",
+          "link": "resource/pug.html"
         }
       ]
     }
