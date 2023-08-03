@@ -40,16 +40,6 @@ const config = {
       old: '#000',
       new: '#9013fe',
     },
-    // google analytics
-    google: {
-      old: 'GTM-XXXXXX',
-      new: 'GTM-XXXXXX',
-    },
-    // yandex metrika
-    yandex: {
-      old: 'XXXXXX',
-      new: 'XXXXXX',
-    },
   },
 
   proxy: 'http://localhost', // url виртуального хоста
