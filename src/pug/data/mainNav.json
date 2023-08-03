@@ -47,6 +47,28 @@
           "link": "resource/assets.html"
         }
       ]
+    },
+    {
+      "title": "Компоненты",
+      "icon": "icon-component",
+      "links": [
+        {
+          "name": "Заголовок c якорем",
+          "link": "component"
+        },
+        {
+          "name": "Код highlight",
+          "link": "component/code.html"
+        },
+        {
+          "name": "SVG иконка",
+          "link": "component/icon.html"
+        },
+        {
+          "name": "Picture",
+          "link": "component/picture.html"
+        }
+      ]
     }
   ]
 }

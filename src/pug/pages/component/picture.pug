@@ -1,0 +1,59 @@
+extends ../../layouts/component.pug
+
+block variables
+  - var pageTitle = "Picture изображение";
+  - var pageDesc = "Компонент picture добавляет ретина изображение.";
+
+block intro
+  h1 #{ pageTitle }
+  p #{ pageDesc }
+  em ./src/pug/components/picture.pug
+
+block content
+  .main-content__example
+    +picture("img/logo-min@1x.png")(width="350", height="280", alt="Логотип")
+
+  h2 Вызов компонента
+  +code("pug").
+    +picture("img/logo-min@1x.png")(width="350", height="280", alt="Логотип")
+
+  h2 Содержимое компонента
+  +code("pug").
+    mixin picture(name)
+      - var formatStandard = [".svg", ".gif"];
+      - var formatRetina = [".jpg", ".jpeg", ".png"];
+      - var name2x = name.replace("@1x", "@2x");
+
+      if name.includes(formatStandard)
+        img(src=name, alt, loading="lazy")&attributes(attributes)
+
+      else
+        each format in formatRetina
+          if name.includes(format)
+            - var newName = name.replace(format, ".webp");
+            - var newName2x = name2x.replace(format, ".webp");
+
+            p
+              picture
+                source(type="image/webp", srcset=newName + " 1x, " + newName2x + " 2x")
+                img(src=name, srcset=name2x + " 2x", width, height, alt, loading="lazy")&attributes(attributes)
+
+  h2 Сборка компонента
+  +code("html")
+    :special-chars
+      <p>
+        <picture>
+          <source
+            type="image/webp"
+            srcset="img/logo-min@1x.webp 1x, img/logo-min@2x.webp 2x"
+          />
+          <img
+            src="img/logo-min@1x.png"
+            srcset="img/logo-min@2x.png 2x"
+            alt="Логотип"
+            loading="lazy"
+            width="350"
+            height="280"
+          />
+        </picture>
+      </p>

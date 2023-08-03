@@ -1,0 +1,31 @@
+extends ../../layouts/component.pug
+
+block variables
+  - var pageTitle = "SVG иконка";
+  - var pageDesc = "Компонент SVG иконка добавляет svg иконки на странице.";
+
+block intro
+  h1 #{ pageTitle }
+  p #{ pageDesc }
+  em ./src/pug/components/icon.pug
+
+block content
+  .main-content__example
+    +icon("icon-copy")
+
+  h2 Вызов компонента
+  +code("pug").
+    +icon("icon-copy")(width="20", height="20")
+
+  h2 Содержимое компонента
+  +code("pug").
+    mixin icon(name)
+      svg(class="icon " + name)&attributes(attributes)
+        use(xlink:href="#" + name)
+
+  h2 Сборка компонента
+  +code("html")
+    :special-chars
+      <svg class="icon icon-copy" width="20" height="20">
+        <use xlink:href="#icon-copy"></use>
+      </svg>

@@ -1,0 +1,19 @@
+//- Адаптивное изображение
+mixin picture(name)
+  //- Подерживаемые форматы изображений для адаптации
+  - var formatRetina = [".jpg", ".jpeg", ".png"];
+
+  //- Изменяем имя для ретина изображений
+  - var name2x = name.replace("@1x", "@2x");
+
+  each format in formatRetina
+    if name.includes(format)
+      //- Изменяем расширение изображения в webp
+      - var newName = name.replace(format, ".webp");
+      - var newName2x = name2x.replace(format, ".webp");
+
+      //- Оборачиваем изображение в тег picture
+      p
+        picture
+          source(type="image/webp", srcset=newName + " 1x, " + newName2x + " 2x")
+          img(src=name, srcset=name2x + " 2x", width, height, alt, loading="lazy")&attributes(attributes)

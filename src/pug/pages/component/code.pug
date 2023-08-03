@@ -1,0 +1,107 @@
+extends ../../layouts/component.pug
+
+block variables
+  - var pageTitle = "Код highlight";
+  - var pageDesc = "Компонент код highlight красиво стилизует содержимое тега <code> и дает возможность его скопировать.";
+
+block intro
+  h1 #{ pageTitle }
+  p #{ pageDesc }
+  em ./src/pug/components/code.pug
+
+block content
+  .main-content__example
+    +code("js").
+      const test = (value) => {
+        let x = value;
+
+        returt x++;
+      }
+
+  h2 Вызов компонента
+  +code("pug").
+    +code("js").
+      const test = (value) => {
+        let x = value;
+
+        returt x++;
+      }
+
+  h2 Содержимое компонента
+  +code("pug").
+    mixin code(language="html")
+      - var title = language.toUpperCase();
+
+      .code-block
+        .code-block__header
+          .code-block__name #{ title }
+          button.code-block__button(data-clipboard-action="copy", aria-label="Скопировать в буфер обмена") Копировать
+        .code-block__content
+          pre
+            code(class=language)
+              if block
+                block
+
+  h2 Сборка компонента
+  +code("html")
+    :special-chars
+      <div class="code-block">
+        <div class="code-block__header">
+          <div class="code-block__name">JS</div>
+          <button
+            class="code-block__button"
+            data-clipboard-action="copy"
+            aria-label="Скопировать в буфер обмена"
+          >
+            Копировать
+          </button>
+        </div>
+        <div class="code-block__content">
+          <pre><code class="js hljs language-javascript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">test</span> = (<span class="hljs-params">value</span>) =&gt; {
+            <span class="hljs-keyword">let</span> x = value;
+
+            returt x++;
+          }
+          </code></pre>
+        </div>
+      </div>
+
+  h2 Используемый js код:
+  p 
+    :markdown-it
+      **Файл:** ./src/js/components/code-block.js
+
+  +code("js").
+    import Clipboard from "clipboard";
+
+    const code = () => {
+      const clipboard = new Clipboard(".code-block__button", {
+        target: (trigger) => trigger.parentElement.nextElementSibling,
+      });
+
+      clipboard.on("success", (evt) => {
+        let { text } = evt;
+
+        if (text[0] === "$") {
+          text = text.replaceAll("$ ", "");
+        }
+
+        navigator.clipboard.writeText(text);
+
+        evt.clearSelection();
+      });
+    };
+
+    export default code;
+
+  p 
+    :markdown-it
+      **Файл:** ./src/js/main.js
+      
+  +code("js").
+    import hljs from "highlight.js/lib/common";
+    import code from "@/components/code";
+
+    hljs.highlightAll();
+    code();
+

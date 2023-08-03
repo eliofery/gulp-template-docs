@@ -1,0 +1,73 @@
+extends ../../layouts/component.pug
+
+block variables
+  - var pageTitle = "Заголовок с якорем";
+  - var pageDesc = "Компонент добавляет заголовок c якорем от H2 до H6.";
+
+block intro
+  h1 #{ pageTitle }
+  p #{ pageDesc }
+  em ./src/pug/components/headlines.pug
+
+block content
+  .main-content__example
+    +h2("Заголовок H2", 'component', "link-h2")
+    +h3("Заголовок H3", 'component', "link-h3")
+    +h4("Заголовок H4", 'component', "link-h4")
+    +h5("Заголовок H5", 'component', "link-h5")
+    +h6("Заголовок H6", 'component', "link-h6")
+
+  h2 Вызов компонента
+  +code("pug").
+    +h2("Заголовок H2", 'component', "link-h2")
+    +h3("Заголовок H3", 'component', "link-h3")
+    +h4("Заголовок H4", 'component', "link-h4")
+    +h5("Заголовок H5", 'component', "link-h5")
+    +h6("Заголовок H6", 'component', "link-h6")
+
+  h2 Содержимое компонента
+  +code("pug").
+    mixin h2(title, path = "", link = "")
+      h2(id=link) #{title}&nbsp;
+        a(href=path + "#" + link, aria-label="Ссылка на раздел: " + title)
+
+    mixin h3(title, path = "", link = "")
+      h3(id=link) #{title}&nbsp;
+        a(href=path + "#" + link, aria-label="Ссылка на раздел: " + title)
+
+    mixin h4(title, path = "", link = "")
+      h4(id=link) #{title}&nbsp;
+        a(href=path + "#" + link, aria-label="Ссылка на раздел: " + title)
+
+    mixin h5(title, path = "", link = "")
+      h5(id=link) #{title}&nbsp;
+        a(href=path + "#" + link, aria-label="Ссылка на раздел: " + title)
+
+    mixin h6(title, path = "", link = "")
+      h6(id=link) #{title}&nbsp;
+        a(href=path + "#" + link, aria-label="Ссылка на раздел: " + title)
+
+
+  h2 Сборка компонента
+  +code("html")
+    :special-chars
+      <h2 id="link-h2">Заголовок H2&nbsp;
+        <a href="component#link-h2" aria-label="Ссылка на раздел: Заголовок H2"></a>
+      </h2>
+      
+      <h3 id="link-h3">Заголовок H3&nbsp;
+        <a href="component#link-h3" aria-label="Ссылка на раздел: Заголовок H3"></a>
+      </h3>
+      
+      <h4 id="link-h4">Заголовок H4&nbsp;
+        <a href="component#link-h4" aria-label="Ссылка на раздел: Заголовок H4"></a>
+      </h4>
+      
+      <h5 id="link-h5">Заголовок H5&nbsp;
+        <a href="component#link-h5" aria-label="Ссылка на раздел: Заголовок H5"></a>
+      </h5>
+      
+      <h6 id="link-h6">Заголовок H6&nbsp;
+        <a href="component#link-h6" aria-label="Ссылка на раздел: Заголовок H6"></a>
+      </h6>
+
